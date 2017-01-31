@@ -1,2 +1,5 @@
 # Egg
-電子たまごたまごを割るシミュレーションができるアプリ。
+電子たまご
+
+たまごを割るシミュレーションができるアプリ。
+Egg breaking simulation application.
