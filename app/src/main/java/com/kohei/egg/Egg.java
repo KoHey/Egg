@@ -90,7 +90,7 @@ public class Egg extends Activity implements SensorEventListener {
             soundPool = new SoundPool.Builder()
                     .setAudioAttributes(audioAttributes)
                     // ストリーム数に応じて
-                    .setMaxStreams(2)
+                    .setMaxStreams(4)
                     .build();
         }
         //サウンドをロードしておく
@@ -164,7 +164,7 @@ public class Egg extends Activity implements SensorEventListener {
                         sensorFlg = 1;
                         knockCnt = -1;
                     }else if(knockCnt == 1){
-                        imageEggPic.setImageResource(R.drawable.egg3);
+                        //imageEggPic.setImageResource(R.drawable.egg3);
                         soundPool.play(soundKonKon, 1.0f, 1.0f, 0, 0, 1);
                         sensorFlg = 1;
                         knockCnt --;
