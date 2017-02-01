@@ -14,6 +14,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import java.util.Random;
@@ -37,6 +39,10 @@ public class Egg extends Activity implements SensorEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // タイトルバーを隠す
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // ステータスバーを隠す
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_egg);
         findImages();
         initSensor();
@@ -164,7 +170,7 @@ public class Egg extends Activity implements SensorEventListener {
                         sensorFlg = 1;
                         knockCnt = -1;
                     }else if(knockCnt == 1){
-                        //imageEggPic.setImageResource(R.drawable.egg3);
+                        imageEggPic.setImageResource(R.drawable.egg3);
                         soundPool.play(soundKonKon, 1.0f, 1.0f, 0, 0, 1);
                         sensorFlg = 1;
                         knockCnt --;
@@ -181,7 +187,6 @@ public class Egg extends Activity implements SensorEventListener {
                     sensorFlg = 0;
                 }
             }
-            //Log.v("sensorFlg", String.valueOf(sensorFlg));
         }
     }
 
