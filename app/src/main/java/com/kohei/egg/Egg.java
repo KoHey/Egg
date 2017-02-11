@@ -161,24 +161,30 @@ public class Egg extends Activity implements SensorEventListener {
             SensorManager.getOrientation(rotationMatrix, attitude);
             if((int)(attitude[1] * RAD2DEG) >= -15 && (int)(attitude[1] * RAD2DEG) <= 30 && Math.abs((int)(attitude[2] * RAD2DEG)) >= 150) {
                 if(sensorFlg == 0) {
-                    if(knockCnt == -1){
-                        sensorFlg = 1;
-                        knockCnt = -1;
-                    }else if(knockCnt == 0){
-                        imageEggPic.setImageResource(R.drawable.egg4);
-                        soundPool.play(soundWarisugi, 1.0f, 1.0f, 0, 0, 1);
-                        sensorFlg = 1;
-                        knockCnt = -1;
-                    }else if(knockCnt == 1){
-                        imageEggPic.setImageResource(R.drawable.egg3);
-                        soundPool.play(soundKonKon, 1.0f, 1.0f, 0, 0, 1);
-                        sensorFlg = 1;
-                        knockCnt --;
-                    }else{
-                        imageEggPic.setImageResource(R.drawable.egg2);
-                        soundPool.play(soundKon, 1.0f, 1.0f, 0, 0, 1);
-                        sensorFlg = 1;
-                        knockCnt --;
+                    switch(knockCnt){
+                        case -1:
+                            sensorFlg = 1;
+                            knockCnt = -1;
+                            break;
+                        case 0:
+                            imageEggPic.setImageResource(R.drawable.egg4);
+                            soundPool.play(soundWarisugi, 1.0f, 1.0f, 0, 0, 1);
+                            sensorFlg = 1;
+                            knockCnt = -1;
+                            break;
+                        case 1:
+                            imageEggPic.setImageResource(R.drawable.egg3);
+                            soundPool.play(soundKonKon, 1.0f, 1.0f, 0, 0, 1);
+                            sensorFlg = 1;
+                            knockCnt --;
+                            break;
+                        default:
+                            imageEggPic.setImageResource(R.drawable.egg2);
+                            soundPool.play(soundKon, 1.0f, 1.0f, 0, 0, 1);
+                            sensorFlg = 1;
+                            knockCnt --;
+                            break;
+
                     }
                 }
             }
