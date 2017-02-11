@@ -23,7 +23,7 @@ import java.util.Random;
 public class Egg extends Activity implements SensorEventListener {
     private AudioAttributes audioAttributes;
     private SoundPool soundPool;
-    private int soundKon, soundKonKon,soundEggBreak,soundWarisugi;
+    private int soundKon, soundKonKon, soundEggBreak, soundWarisugi;
     //public final static String TAG = "SensorTest2";
     protected final static double RAD2DEG = 180 / Math.PI;
     SensorManager sensorManager;
@@ -142,7 +142,6 @@ public class Egg extends Activity implements SensorEventListener {
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 
     @Override
@@ -159,8 +158,9 @@ public class Egg extends Activity implements SensorEventListener {
         if (geomagnetic != null && gravity != null) {
             SensorManager.getRotationMatrix(rotationMatrix, null, gravity, geomagnetic);
             SensorManager.getOrientation(rotationMatrix, attitude);
-            if((int)(attitude[1] * RAD2DEG) >= -15 && (int)(attitude[1] * RAD2DEG) <= 30 && Math.abs((int)(attitude[2] * RAD2DEG)) >= 150) {
-                if(sensorFlg == 0) {
+            if(sensorFlg == 0) {
+                if((int)(attitude[1] * RAD2DEG) >= -15 && (int)(attitude[1] * RAD2DEG) <= 30 && Math.abs((int)(attitude[2] * RAD2DEG)) >= 150) {
+                    //スマホを振る
                     switch(knockCnt){
                         case -1:
                             sensorFlg = 1;
@@ -184,12 +184,11 @@ public class Egg extends Activity implements SensorEventListener {
                             sensorFlg = 1;
                             knockCnt --;
                             break;
-
                     }
                 }
-            }
-            if((int)(attitude[1] * RAD2DEG) >= -90 && (int)(attitude[1] * RAD2DEG) <= -20 && Math.abs((int)(attitude[2] * RAD2DEG)) >= 150) {
-                if(sensorFlg == 1){
+            }else{
+                if((int)(attitude[1] * RAD2DEG) >= -90 && (int)(attitude[1] * RAD2DEG) <= -20 && Math.abs((int)(attitude[2] * RAD2DEG)) >= 150) {
+                    //スマホを戻す
                     sensorFlg = 0;
                 }
             }
